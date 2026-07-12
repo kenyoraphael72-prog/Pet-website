@@ -12,6 +12,11 @@ export default function AdminDashboard() {
   const [orders, setOrders] = useState([]);
   const [essentials, setEssentials] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loginUsername, setLoginUsername] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   
   // Puppy modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -247,6 +252,53 @@ export default function AdminDashboard() {
       setIsUploading(false);
     }
   };
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (loginUsername === "admin" && loginPassword === "MarkNelson2578#") {
+      setIsAuthenticated(true);
+    } else {
+      alert("Invalid credentials. Please try again.");
+    }
+  };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[#f3f4f6] flex items-center justify-center font-sans px-4">
+        <div className="bg-white p-10 rounded-2xl shadow-xl w-full max-w-md border border-gray-100">
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-playfair font-bold text-[#1f2937] mb-2">Heirloom Admin</h1>
+            <p className="text-gray-500 font-light text-sm">Please log in to access the dashboard</p>
+          </div>
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Username</label>
+              <input 
+                type="text" 
+                value={loginUsername} 
+                onChange={(e) => setLoginUsername(e.target.value)} 
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4a6659] focus:border-transparent outline-none transition-all" 
+                required 
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <input 
+                type="password" 
+                value={loginPassword} 
+                onChange={(e) => setLoginPassword(e.target.value)} 
+                className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-[#4a6659] focus:border-transparent outline-none transition-all" 
+                required 
+              />
+            </div>
+            <button type="submit" className="w-full py-4 bg-[#4a6659] hover:bg-[#3d4b43] text-white rounded-lg font-medium tracking-wide transition-colors shadow-md">
+              Access Dashboard
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] flex flex-col font-sans">
