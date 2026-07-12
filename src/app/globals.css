@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-sage: #5b7c6c;
+  --color-brand-sage-hover: #4a6659;
+  --color-brand-camel: #d2a679;
+  --color-brand-camel-hover: #bd956d;
+  
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7f7f7;
+  --color-text-primary: #1f2937; /* charcoal */
+  --color-text-secondary: #4b5563; /* lighter charcoal */
+  --color-border: #e5e7eb;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #1f2937;
+}
+
+/* We force light mode for this specific high-end clean look, or configure dark mode similarly */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #111827; /* very dark charcoal */
+    --foreground: #f9fafb; /* off white */
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility for glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dark .glass {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
