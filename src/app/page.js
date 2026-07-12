@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { supabase } from "./utils/supabase";
-import { REVIEWS } from "./data/reviews";
+import { supabase } from "../utils/supabase";
+import { REVIEWS } from "../data/reviews";
 
 // Showcase bulldogs (displayed when database has no entries yet)
 const SHOWCASE_BULLDOGS = [
