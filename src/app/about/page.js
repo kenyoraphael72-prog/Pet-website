@@ -25,22 +25,22 @@ export default function AboutPage() {
         
         <div className="relative w-full h-[400px] rounded-[2rem] overflow-hidden shadow-2xl mb-16">
           <Image 
-            src="https://images.unsplash.com/photo-1601758174114-e711c0cbaa69?q=80&w=1200&auto=format&fit=crop" 
-            alt="Breeder with dog" 
+            src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=1200&auto=format&fit=crop" 
+            alt="English Bulldog companion" 
             fill 
-            className="object-cover"
+            className="object-cover object-top"
           />
         </div>
 
         <div className="space-y-8 text-lg text-gray-600 font-light leading-relaxed">
           <p>
-            For over two decades, Heirloom Pets has stood at the pinnacle of luxury companion breeding. Our journey began with a simple yet profound belief: that the bond between human and animal is one of life's greatest privileges, and it deserves to be nurtured from the very first breath.
+            For over two decades, Heirloom Pets has stood at the pinnacle of luxury English Bulldog breeding. Our journey began with a simple yet profound belief: that the bond between human and bulldog is one of life's greatest privileges, and it deserves to be nurtured from the very first breath.
           </p>
           <p>
-            We are not just breeders; we are architects of family legacies. Every puppy born under our roof is welcomed into a world of warmth, meticulous care, and unconditional love. Our state-of-the-art facilities are designed not as kennels, but as extensions of our own home.
+            We are not just breeders; we are architects of family legacies. Every English Bulldog puppy born under our roof is welcomed into a world of warmth, meticulous care, and unconditional love. Our state-of-the-art facilities are designed not as kennels, but as extensions of our own home.
           </p>
           <p>
-            When you welcome an Heirloom Pet into your life, you are not simply acquiring a dog. You are embracing a masterfully bred companion with an impeccable lineage, guaranteed health, and a temperament cultivated for lifelong devotion.
+            When you welcome an Heirloom Bulldog into your life, you are not simply acquiring a dog. You are embracing a masterfully bred companion with an impeccable lineage, guaranteed health, and the signature calm, loving temperament that only a purebred English Bulldog can offer.
           </p>
         </div>
 

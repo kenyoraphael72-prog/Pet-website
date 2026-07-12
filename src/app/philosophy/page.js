@@ -23,10 +23,10 @@ export default function PhilosophyPage() {
         <div className="text-center mb-20 max-w-3xl mx-auto">
           <span className="text-xs font-bold tracking-widest text-[#4a6659] uppercase mb-4 block">Our Guiding Light</span>
           <h1 className="text-5xl md:text-6xl font-playfair font-semibold text-[#1f2937] leading-tight mb-6">
-            The Heirloom Standard
+            The Heirloom Bulldog Standard
           </h1>
           <p className="text-lg text-gray-500 font-light">
-            We believe that breeding is an art form that requires scientific precision, ethical devotion, and an uncompromising commitment to the animal's welfare.
+            We believe that breeding English Bulldogs is an art form that requires scientific precision, ethical devotion, and an uncompromising commitment to the animal's welfare.
           </p>
         </div>
 
@@ -34,8 +34,8 @@ export default function PhilosophyPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-24">
           <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-xl">
             <Image 
-              src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?q=80&w=1200&auto=format&fit=crop" 
-              alt="Puppies playing" 
+              src="https://images.unsplash.com/photo-1546975490-a889fa6e5eb6?q=80&w=1200&auto=format&fit=crop" 
+              alt="English Bulldog sleeping" 
               fill 
               className="object-cover"
             />
@@ -46,7 +46,7 @@ export default function PhilosophyPage() {
             </div>
             <h2 className="text-3xl font-playfair font-semibold text-[#1f2937]">Ethical Origins</h2>
             <p className="text-gray-600 font-light leading-relaxed">
-              Every lineage we nurture is carefully selected to eliminate hereditary diseases and ensure genetic diversity. We strictly adhere to limits on litter frequency, prioritizing the health and recovery of our mothers above all else. Our facilities surpass all regulatory standards, providing a sanctuary of comfort and stimulation.
+              Every bulldog lineage we nurture is carefully selected to eliminate hereditary diseases specific to the breed, such as respiratory issues or joint dysplasia. We strictly adhere to limits on litter frequency, prioritizing the health and recovery of our mothers above all else. Our facilities surpass all regulatory standards, providing a sanctuary of comfort and stimulation.
             </p>
           </div>
         </div>
@@ -58,13 +58,13 @@ export default function PhilosophyPage() {
             </div>
             <h2 className="text-3xl font-playfair font-semibold text-[#1f2937]">Neurological Stimulation</h2>
             <p className="text-gray-600 font-light leading-relaxed">
-              From day three to sixteen, our puppies undergo Early Neurological Stimulation (ENS). This specialized handling improves cardiovascular performance, strengthens heart beats, creates stronger adrenal glands, builds tolerance to stress, and offers greater resistance to disease.
+              From day three to sixteen, our bulldog puppies undergo Early Neurological Stimulation (ENS). This specialized handling improves cardiovascular performance, strengthens heart beats, creates stronger adrenal glands, builds tolerance to stress, and offers greater resistance to disease.
             </p>
           </div>
           <div className="relative aspect-square rounded-[3rem] overflow-hidden shadow-xl order-1 md:order-2">
             <Image 
-              src="https://images.unsplash.com/photo-1597626133663-53df9633b799?q=80&w=1200&auto=format&fit=crop" 
-              alt="Veterinary care" 
+              src="https://images.unsplash.com/photo-1558929996-da64ba858215?q=80&w=1200&auto=format&fit=crop" 
+              alt="English Bulldog face" 
               fill 
               className="object-cover"
             />
