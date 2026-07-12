@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { supabase } from "../utils/supabase";
 import { REVIEWS } from "../data/reviews";
+import Navbar from "../components/Navbar";
 
 // Showcase bulldogs (displayed when database has no entries yet)
 const SHOWCASE_BULLDOGS = [
@@ -221,18 +222,8 @@ export default function PetsPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#fafafa]" style={{ fontFamily: "'Outfit', sans-serif" }}>
 
-      {/* ── HEADER ── */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md px-8 md:px-16 py-5 flex justify-between items-center border-b border-gray-100 shadow-sm">
-        <Link href="/" className="text-2xl font-playfair font-bold tracking-widest text-[#3d4b43]">
-          HEIRLOOM PETS
-        </Link>
-        <nav className="hidden md:flex space-x-10 text-sm font-semibold text-gray-500 uppercase tracking-wider">
-          <Link href="/pets" className="text-[#4a6659] border-b-2 border-[#4a6659] pb-1">Our Bulldogs</Link>
-          <Link href="/about" className="hover:text-[#4a6659] transition-colors pb-1">About</Link>
-          <Link href="/philosophy" className="hover:text-[#4a6659] transition-colors pb-1">Philosophy</Link>
-          <Link href="/contact" className="hover:text-[#4a6659] transition-colors pb-1">Contact</Link>
-        </nav>
-      </header>
+      {/* ── GLOBAL NAVBAR ── */}
+      <Navbar />
 
       {/* ── HERO SLIDESHOW ── */}
       <HeroSlideshow />

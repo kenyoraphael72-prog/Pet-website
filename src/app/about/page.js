@@ -1,21 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
+import Navbar from "../../components/Navbar";
 
 export default function AboutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-[#fafafa]">
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md px-8 md:px-16 py-6 flex justify-between items-center border-b border-gray-100">
-        <Link href="/" className="text-2xl md:text-3xl font-playfair font-semibold tracking-wider text-[#3d4b43]">
-          HEIRLOOM PETS
-        </Link>
-        <nav className="hidden md:flex space-x-10 text-sm font-medium text-gray-600">
-          <Link href="/pets" className="hover:text-[#4a6659] transition-colors pb-1">Available Pets</Link>
-          <Link href="/about" className="text-[#4a6659] border-b-2 border-[#4a6659] pb-1">About</Link>
-          <Link href="/philosophy" className="hover:text-[#4a6659] transition-colors pb-1">Philosophy</Link>
-          <Link href="/contact" className="hover:text-[#4a6659] transition-colors pb-1">Contact</Link>
-        </nav>
-      </header>
+      {/* Global Navbar */}
+      <Navbar />
 
       {/* Main Content */}
       <main className="flex-1 max-w-[1000px] mx-auto w-full px-8 py-24">

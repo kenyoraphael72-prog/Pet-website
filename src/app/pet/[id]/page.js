@@ -5,10 +5,13 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { supabase } from "../../../utils/supabase";
+import Navbar from "../../../components/Navbar";
+import { useCart } from "../../CartContext";
 
 export default function PetDetailPage() {
   const params = useParams();
   const id = params?.id;
+  const { addToCart } = useCart();
 
   const [pet, setPet] = useState(null);
   const [essentials, setEssentials] = useState([]);
@@ -84,26 +87,39 @@ export default function PetDetailPage() {
   }, 0);
   const totalAdoptPrice = basePrice + essentialsTotal;
 
-  // Build the checkout URL with selected essentials as a query param
-  const checkoutUrl = `/checkout/${pet.id}${
-    selectedEssentials.length > 0 ? `?essentials=${selectedEssentials.join(",")}` : ""
-  }`;
+  const handleAddToCart = () => {
+    // Add pet
+    addToCart({
+      uniqueId: `pet-${pet.id}`,
+      id: pet.id,
+      type: "pet",
+      name: pet.name,
+      price: parseFloat(pet.price),
+      image: pet.image,
+      breed: "English Bulldog"
+    });
+
+    // Add selected essentials
+    selectedEssentials.forEach(essentialId => {
+      const item = essentials.find(e => e.id === essentialId);
+      if (item) {
+        addToCart({
+          uniqueId: `ess-${item.id}-${Date.now()}`,
+          id: item.id,
+          type: "essential",
+          name: item.name,
+          price: parseFloat(item.price),
+          image: item.image
+        });
+      }
+    });
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-[#fafafa]" style={{ fontFamily: "'Outfit', sans-serif" }}>
       
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md px-8 md:px-16 py-5 flex justify-between items-center border-b border-gray-100 shadow-sm">
-        <Link href="/" className="text-2xl font-playfair font-bold tracking-widest text-[#3d4b43]">
-          HEIRLOOM PETS
-        </Link>
-        <nav className="hidden md:flex space-x-10 text-sm font-semibold text-gray-500 uppercase tracking-wider">
-          <Link href="/pets" className="hover:text-[#4a6659] transition-colors pb-1">Our Bulldogs</Link>
-          <Link href="/about" className="hover:text-[#4a6659] transition-colors pb-1">About</Link>
-          <Link href="/philosophy" className="hover:text-[#4a6659] transition-colors pb-1">Philosophy</Link>
-          <Link href="/contact" className="hover:text-[#4a6659] transition-colors pb-1">Contact</Link>
-        </nav>
-      </header>
+      {/* Global Header */}
+      <Navbar />
 
       <main className="flex-1 flex flex-col lg:flex-row max-w-[1400px] mx-auto w-full px-8 py-12 gap-16">
         
@@ -283,12 +299,12 @@ export default function PetDetailPage() {
 
             {/* Actions */}
             <div className="space-y-4">
-              <Link 
-                href={checkoutUrl} 
-                className="block w-full text-center py-4 bg-[#1f2937] hover:bg-[#4a6659] text-white rounded-2xl font-semibold tracking-wide transition-all shadow-lg hover:shadow-xl"
+              <button 
+                onClick={handleAddToCart}
+                className="block w-full text-center py-4 bg-[#1f2937] hover:bg-[#4a6659] text-white rounded-2xl font-semibold tracking-wide transition-all shadow-lg hover:shadow-xl focus:outline-none"
               >
-                PROCEED TO ADOPTION
-              </Link>
+                ADD TO CART
+              </button>
               <p className="text-xs text-center text-gray-400">
                 You will choose your payment option (Full or 20% Deposit) in the next step.
               </p>

@@ -22,6 +22,9 @@ export const metadata = {
   description: "High-end pet breeding and sales. Discover your new best friend with complete transparency and care.",
 };
 
+import { CartProvider } from "./CartContext";
+import CartDrawer from "../components/CartDrawer";
+
 export default function RootLayout({ children }) {
   return (
     <html
@@ -29,7 +32,10 @@ export default function RootLayout({ children }) {
       className={`${inter.variable} ${outfit.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
-        {children}
+        <CartProvider>
+          {children}
+          <CartDrawer />
+        </CartProvider>
       </body>
     </html>
   );
