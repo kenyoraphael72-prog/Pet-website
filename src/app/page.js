@@ -179,6 +179,26 @@ export default function PetsPage() {
   const [loading, setLoading]         = useState(true);
   const [genderFilter, setGenderFilter] = useState("All");
 
+  // Premium Features States
+  const [showWaitlist, setShowWaitlist] = useState(false);
+  const [waitlistEmail, setWaitlistEmail] = useState("");
+  const [waitlistSubmitted, setWaitlistSubmitted] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+
+  // Scroll effect for Waitlist Modal
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPos = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollPos > height * 0.4 && !sessionStorage.getItem('vipWaitlistShown')) {
+        setShowWaitlist(true);
+        sessionStorage.setItem('vipWaitlistShown', 'true');
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   useEffect(() => {
     const fetchPets = async () => {
       const { data, error } = await supabase
@@ -216,6 +236,23 @@ export default function PetsPage() {
 
       {/* ── HERO SLIDESHOW ── */}
       <HeroSlideshow />
+
+      {/* ── PREMIUM TRUST BADGES ── */}
+      <div className="bg-white border-b border-gray-100 py-5 overflow-x-auto">
+        <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex justify-between items-center min-w-[800px] gap-8">
+          {[
+            { icon: "🏅", text: "AKC Registered Bloodlines" },
+            { icon: "🏥", text: "1-Year Health Guarantee" },
+            { icon: "📜", text: "Certified USDA Breeder" },
+            { icon: "🩺", text: "Vet Health Checked" }
+          ].map((badge, idx) => (
+            <div key={idx} className="flex items-center gap-3 text-gray-700">
+              <span className="text-2xl drop-shadow-sm">{badge.icon}</span>
+              <span className="text-sm font-semibold tracking-wide uppercase">{badge.text}</span>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* ── STATS BAR ── */}
       <div className="bg-[#2a3630] py-6 px-8 md:px-16 flex flex-wrap justify-center gap-10 md:gap-16">
@@ -406,6 +443,42 @@ export default function PetsPage() {
         `}} />
       </section>
 
+      {/* ── FAQ ACCORDION ── */}
+      <section className="bg-white py-24 px-8 md:px-16 border-t border-gray-100">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-playfair font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+            <p className="text-gray-500 font-light text-lg">Everything you need to know about welcoming your new Heirloom Bulldog.</p>
+          </div>
+          
+          <div className="space-y-4">
+            {[
+              { q: "How does the flight nanny delivery work?", a: "Your puppy flies in the cabin accompanied by our professional flight nanny. They are hand-delivered directly to you at your nearest major airport, ensuring zero stress and maximum safety." },
+              { q: "What is included with my puppy?", a: "Every puppy goes home with a comprehensive care package: a 1-year health guarantee, AKC registration paperwork, up-to-date vaccination records, a microchip, and a starter supply of premium puppy food." },
+              { q: "Can I reserve a puppy from an upcoming litter?", a: "Absolutely. We highly recommend joining our VIP Waitlist, as our litters are often fully reserved before they are even born. Waitlist members get first pick." },
+              { q: "Do you offer financing?", a: "We require a 20% non-refundable deposit to hold a puppy. The remaining balance can be paid in full upon pickup or delivery. We do not offer in-house financing at this time." }
+            ].map((faq, idx) => (
+              <div key={idx} className="border border-gray-200 rounded-2xl overflow-hidden transition-all bg-gray-50/50 hover:bg-gray-50">
+                <button 
+                  onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
+                  className="w-full flex justify-between items-center p-6 text-left focus:outline-none"
+                >
+                  <span className="font-semibold text-gray-900">{faq.q}</span>
+                  <span className={`text-[#4a6659] transform transition-transform duration-300 ${openFaq === idx ? 'rotate-180' : ''}`}>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                  </span>
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ease-in-out ${openFaq === idx ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'}`}>
+                  <p className="p-6 pt-0 text-gray-600 font-light leading-relaxed">
+                    {faq.a}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── FOOTER CTA ── */}
       <section className="bg-[#4a6659] py-20 px-8 text-center">
         <span className="text-xs font-bold tracking-[0.3em] text-white/60 uppercase block mb-4">Ready to Find Your Companion?</span>
@@ -422,6 +495,58 @@ export default function PetsPage() {
           </Link>
         </div>
       </section>
+
+      {/* ── VIP WAITLIST MODAL ── */}
+      {showWaitlist && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm transition-opacity" onClick={() => setShowWaitlist(false)} />
+          <div className="relative bg-white w-full max-w-lg rounded-3xl p-10 shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+            {/* Background accent */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#4a6659]/10 rounded-full blur-3xl -mr-10 -mt-10" />
+            
+            <button 
+              onClick={() => setShowWaitlist(false)}
+              className="absolute top-6 right-6 text-gray-400 hover:text-gray-800 transition-colors focus:outline-none"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+
+            {!waitlistSubmitted ? (
+              <>
+                <div className="w-12 h-12 bg-[#4a6659]/10 text-[#4a6659] rounded-2xl flex items-center justify-center text-2xl mb-6">✨</div>
+                <h3 className="text-3xl font-playfair font-bold text-gray-900 mb-3">Join the VIP Waitlist</h3>
+                <p className="text-gray-600 font-light mb-8 leading-relaxed">
+                  Our litters are incredibly exclusive and often reserved instantly. Enter your email to get priority access to our upcoming champions.
+                </p>
+                <form onSubmit={(e) => { e.preventDefault(); setWaitlistSubmitted(true); }} className="space-y-4 relative z-10">
+                  <input 
+                    type="email" 
+                    required
+                    value={waitlistEmail}
+                    onChange={(e) => setWaitlistEmail(e.target.value)}
+                    placeholder="Enter your email address"
+                    className="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:border-[#4a6659] focus:ring-1 focus:ring-[#4a6659] transition-all"
+                  />
+                  <button type="submit" className="w-full py-4 bg-[#1f2937] hover:bg-[#4a6659] text-white rounded-xl font-semibold tracking-wide shadow-lg transition-colors">
+                    Request Exclusive Access
+                  </button>
+                </form>
+                <p className="text-xs text-gray-400 text-center mt-6">We respect your privacy. No spam, ever.</p>
+              </>
+            ) : (
+              <div className="text-center py-8 relative z-10">
+                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-3xl mx-auto mb-6">✓</div>
+                <h3 className="text-2xl font-playfair font-bold text-gray-900 mb-2">You're on the list!</h3>
+                <p className="text-gray-600 font-light">We will notify you the moment our next litter is confirmed.</p>
+                <button onClick={() => setShowWaitlist(false)} className="mt-8 text-sm font-semibold text-[#4a6659] hover:underline focus:outline-none">
+                  Return to site
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

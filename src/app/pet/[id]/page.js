@@ -163,6 +163,54 @@ export default function PetDetailPage() {
               )}
             </div>
           </section>
+
+          {/* ── MEET THE PARENTS ── */}
+          <section className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100">
+            <h3 className="text-2xl font-playfair font-bold text-gray-800 mb-2">Meet the Parents</h3>
+            <p className="text-gray-500 font-light mb-8">Premium champion bloodlines carefully selected for health, temperament, and structure.</p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Sire */}
+              <div className="flex gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-200/50 hover:shadow-md transition-shadow">
+                <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0 relative bg-gray-200">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1517423568366-8b83523034fd?q=80&w=400&auto=format&fit=crop" 
+                    alt="The Sire" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#4a6659] mb-1">The Sire (Father)</span>
+                  <h4 className="font-playfair font-bold text-lg text-gray-900">Grand Ch. Apollo</h4>
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <span className="text-[10px] font-bold bg-[#1f2937] text-white px-2 py-0.5 rounded uppercase">AKC Registered</span>
+                    <span className="text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded uppercase">OFA Clear</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Dam */}
+              <div className="flex gap-4 p-4 rounded-2xl bg-gray-50 border border-gray-200/50 hover:shadow-md transition-shadow">
+                <div className="w-24 h-24 rounded-xl overflow-hidden shrink-0 relative bg-gray-200">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1583337260907-fdf1c08611a9?q=80&w=400&auto=format&fit=crop" 
+                    alt="The Dam" 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+                <div className="flex flex-col justify-center">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#4a6659] mb-1">The Dam (Mother)</span>
+                  <h4 className="font-playfair font-bold text-lg text-gray-900">Bella Royale</h4>
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    <span className="text-[10px] font-bold bg-[#1f2937] text-white px-2 py-0.5 rounded uppercase">AKC Registered</span>
+                    <span className="text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded uppercase">OFA Clear</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
 
         {/* Right Column: Checkout & Add-ons */}
