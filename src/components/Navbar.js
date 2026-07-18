@@ -15,10 +15,11 @@ export default function Navbar() {
       
       <div className="flex items-center gap-8">
         <nav className="hidden md:flex space-x-10 text-sm font-semibold text-gray-500 uppercase tracking-wider">
-          <Link href="/pets" className="hover:text-[#4a6659] transition-colors pb-1">Our Bulldogs</Link>
+          <Link href="/" className="hover:text-[#4a6659] transition-colors pb-1">Home</Link>
           <Link href="/about" className="hover:text-[#4a6659] transition-colors pb-1">About</Link>
-          <Link href="/philosophy" className="hover:text-[#4a6659] transition-colors pb-1">Philosophy</Link>
-          <Link href="/contact" className="hover:text-[#4a6659] transition-colors pb-1">Contact</Link>
+          <Link href="/contact" className="hover:text-[#4a6659] transition-colors pb-1">Contact Info</Link>
+          <Link href="/pets" className="hover:text-[#4a6659] transition-colors pb-1">Available Pets</Link>
+          <Link href="/contact#find-us" className="hover:text-[#4a6659] transition-colors pb-1">Find Us</Link>
         </nav>
 
         {/* Cart Icon */}
